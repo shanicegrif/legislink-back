@@ -1,6 +1,7 @@
 const express = require("express");
 const { getAllUsers, getSingleUser, searchUserByEmail, createNewUser, updateUserById, deleteUserById } = require("../queries/user");
 const users = express.Router();
+const bcrypt = require("bcryptjs");
 
 /**
  * TODO: 
@@ -38,6 +39,9 @@ users.get("/:id", async (req, res) => {
     }
 });
 
+/**
+ * TODO: need to apply bcrypt for validation
+ */
 users.post("/login", async (req,res) => {
     try{
         const user = await searchUserByEmail(req.body.user_email);
@@ -58,8 +62,17 @@ users.post("/login", async (req,res) => {
 });
 
 users.post("/", async (req, res) => {
+    const { user_email, user_password, user_zipcode } = req.body;
+    const salt = await bcrypt.genSalt();
+    const hashedPW = await bcrypt.hash(user_password, salt);
+    const hashedEmail = await bcrypt.hash(user_email, salt);
+    const item = {
+        user_email : hashedEmail,
+        user_password : hashedPW,
+        user_zipcode : user_zipcode
+    };
     try{
-        const user = await createNewUser(req.body);
+        const user = await createNewUser(item);
         console.log(user)
         res.json(user);
     } catch(error) {
