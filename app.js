@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
+const users = require("./controllers/usersController.js")
 //TODO: import controllers.
 
 //middlewares 
@@ -14,7 +15,7 @@ app.get("/", (request, response) => {
 });
 
 //TODO: need to setup routers.
-//app.use("", forums);
+app.use("/users", users);
 
 // 404 Page not found
 app.get("*", (req, res) => {
