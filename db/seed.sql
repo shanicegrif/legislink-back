@@ -1,6 +1,6 @@
-\c \c movies_dev;
+\c legislink_db_dev;
 
-INSERT INTO users (username, email, password_hash)
+INSERT INTO users (user_email, user_password, user_zipcode)
 VALUES
-('user1', 'user1@example.com', 'hashed_password1'),
-('user2', 'user2@example.com', 'hashed_password2');
+('user1@example.com', 'hashed_password1', 0000),
+('user2@example.com', 'hashed_password2' 0000);
