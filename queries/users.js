@@ -50,7 +50,7 @@ const createNewUser = async (item) => {
     const { user_email, user_password, user_zipcode } = item;
 
     try {
-        const message = await db.one(`INSERT INTO users (user_email, user_password, user_zipcode) VALUES ($1, $2, $3) RETURNING *`, [user_email, user_password, user_zipcode]);
+        const message = await db.one("INSERT INTO users (user_email, user_password, user_zipcode) VALUES ($1, $2, $3) RETURNING *", [user_email, user_password, user_zipcode]);
         return message;
     } catch(err){
         console.error(err);

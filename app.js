@@ -8,14 +8,14 @@ const users = require("./controllers/usersController.js")
 app.use(cors());
 app.use(express.json());
 
+//TODO: need to setup routers.
+app.use("/users", users);
+
 // root
 app.get("/", (request, response) => {
     //TODO: better welcome messages are required.
     response.send("Hello World!");
 });
-
-//TODO: need to setup routers.
-app.use("/users", users);
 
 // 404 Page not found
 app.get("*", (req, res) => {

@@ -15,7 +15,7 @@ CREATE DATABASE legislink_db_dev;
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
     user_email VARCHAR(255) UNIQUE NOT NULL,
-    user_password VARCHAR(40) NOT NULL,
+    user_password VARCHAR NOT NULL,
     user_zipcode INTEGER NOT NULL,
     manager BOOLEAN
 );

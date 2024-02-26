@@ -1,6 +1,6 @@
 \c legislink_db_dev;
 
+--id 1's unhashed pw is test
 INSERT INTO users (user_email, user_password, user_zipcode)
 VALUES
-('user1@example.com', 'hashed_password1', 0000),
-('user2@example.com', 'hashed_password2' 0000);
+('test@test.com', '$2a$10$uFN41Qh8KbwFS85xaxehXe3Tr1eYJV1hPF3MqHXxEZpLGRWrvZ8rK', 0);
