@@ -19,3 +19,17 @@ CREATE TABLE users (
     user_zipcode INTEGER NOT NULL,
     manager BOOLEAN
 );
+
+--not confirmed
+CREATE TABLE questionnaires (
+    questionnaire_id SERIAL PRIMARY KEY,
+    questionnaire_topic TEXT
+);
+
+--not confirmed
+CREATE TABLE answers (
+    answer_id SERIAL PRIMARY KEY,
+    questionnaire_id INTEGER REFERENCES questionnaires(questionnaire_id) ON DELETE CASCADE,
+    user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE,
+    answer INTEGER NOT NULL
+);
