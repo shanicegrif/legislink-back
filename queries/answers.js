@@ -1,5 +1,12 @@
 const db = require("../db/dbConfig.js");
 
+/**
+ * ToDo: need more queries to control the answers table.
+ * 
+ * 
+ * 
+ */
+
 /*
 CREATE TABLE questionnaires (
     questionnaire_id SERIAL PRIMARY KEY,
@@ -50,37 +57,35 @@ const getAllAnswersByQuestionnaireID = async (id) => {
     }
 }
 
-/** not finished */
-
 //POST
 const createNewAnswer = async (item) => {
-    const { user_email, user_password, user_zipcode } = item;
+    const { questionnaire_id, user_id, answer } = item;
 
     try {
-        const message = await db.one("INSERT INTO users (user_email, user_password, user_zipcode) VALUES ($1, $2, $3) RETURNING *", [user_email, user_password, user_zipcode]);
-        return message;
+        const newAnswer = await db.one("INSERT INTO answer (questionnaire_id, user_id, answer) VALUES ($1, $2, $3) RETURNING *", [questionnaire_id, user_id, answer]);
+        return newAnswer;
     } catch(err){
         console.error(err);
     }
 }
 
 //PUT "/:id"
-const updateUserById = async(id, item) => {
-    const { user_email, user_password, user_zipcode } = item;
+const updateAnswerById = async(id, item) => {
+    const { questionnaire_id, user_id, answer } = item;
     
     try {
-        const message = await db.one(`UPDATE users SET user_email=$1, user_password=$2, user_zipcode=$3 WHERE user_id = ${id} RETURNING *`,[user_email, user_password, user_zipcode]);
-        return message;
+        const updatedAnswer = await db.one(`UPDATE answers SET questionnaire_id=$1, user_id=$2, answer=$3 WHERE answer_id = ${id} RETURNING *`,[questionnaire_id, user_id, answer]);
+        return updatedAnswer;
     } catch(err){
         console.error(err);
     }
 }
 
 //DELETE "/:id"
-const deleteUserById = async(id) => {
+const deleteAnswerById = async(id) => {
     try {
-        const user = await db.one(`DELETE FROM users WHERE user_id = ${id} RETURNING *`);
-        return user;
+        const deletedAnswer = await db.one(`DELETE FROM answer WHERE answer_id = ${id} RETURNING *`);
+        return deletedAnswer;
     } catch(err){
         console.error(err);
     }
