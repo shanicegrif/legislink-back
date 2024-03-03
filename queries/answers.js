@@ -1,11 +1,12 @@
 const db = require("../db/dbConfig.js");
 
-/**
+/**********************************************************
+ * 
  * ToDo: need more queries to control the answers table.
+ * TODO: put some console.log to print a message for nodemon
  * 
  * 
- * 
- */
+ **********************************************************/
 
 /*
 CREATE TABLE questionnaires (
@@ -21,13 +22,14 @@ CREATE TABLE answers (
 );
 */
 
-/**
- * *********************
- * TODO: put some console.log to print a message for nodemon
- * *********************
- */
-
 //GET "/"
+/**
+ * getAllAnswers()
+ * ===========================
+ * get all rows from the "answers".
+ * 
+ * @returns {Object}
+ */
 const getAllAnswers = async () => {
     try {
         const answers = await db.any("SELECT * FROM answers");
@@ -38,6 +40,14 @@ const getAllAnswers = async () => {
 }
 
 //GET 
+/**
+ * getAllAnswersBySingleUserID()
+ * ==============================
+ * get all rows that belong to specific user.
+ * 
+ * @param {string} id - user_id
+ * @returns {object}
+ */
 const getAllAnswersBySingleUserID = async (id) => {
     try{
         const answers = await db.any(`SELECT * FROM answers WHERE user_id = ${id}`);
@@ -48,6 +58,14 @@ const getAllAnswersBySingleUserID = async (id) => {
 }
 
 //GET
+/**
+ * getAllAnswersByQuestionnaireID()
+ * =====================================
+ * get all rows that related to specific question.
+ * 
+ * @param {string} id - questionnaire_id
+ * @returns 
+ */
 const getAllAnswersByQuestionnaireID = async (id) => {
     try{
         const answers = await db.any(`SELECT * FROM answers WHERE questionnaire_id = '${id}'`);
@@ -58,6 +76,14 @@ const getAllAnswersByQuestionnaireID = async (id) => {
 }
 
 //POST
+/**
+ * createNewAnswer()
+ * ============================
+ * create a new row for the "answers"
+ * 
+ * @param {object} item 
+ * @returns 
+ */
 const createNewAnswer = async (item) => {
     const { questionnaire_id, user_id, answer } = item;
 
