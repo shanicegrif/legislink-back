@@ -20,7 +20,7 @@ questionnaires.get("/", async (req, res) => {
 /** POST */
 questionnaires.post("/", async (req, res) => {
     try{
-        const question = await createNewUser(req.body);
+        const question = await createNewQuestions(req.body);
         console.log(question)
         res.json(question);
     } catch(error) {
