@@ -1,12 +1,16 @@
 const db = require("../db/dbConfig.js");
 
 /*
+        TODO: { email, displayName, photoURL, uid }
+
     CREATE TABLE users (
-    user_id SERIAL PRIMARY KEY,
-    user_email VARCHAR(255) UNIQUE NOT NULL,
-    user_password VARCHAR(40) NOT NULL,
-    user_zipcode INTEGER NOT NULL,
-    manager BOOLEAN
+        user_id SERIAL PRIMARY KEY,
+        user_email TEXT UNIQUE NOT NULL,
+        user_display_name TEXT,
+        user_photoURL TEXT,
+        user_uid TEXT NOT NULL,
+        user_zipcode INTEGER NOT NULL,
+    );
 */
 
 /**
@@ -43,15 +47,15 @@ const searchUserByEmail = async (user_email) => {
     } catch(err){
         console.error(err);
     }
-}
+};
 
 //POST
 const createNewUser = async (item) => {
-    const { user_email, user_password, user_zipcode } = item;
+    const { email, displayName, photoURL, uid } = item;
 
     try {
-        const message = await db.one("INSERT INTO users (user_email, user_password, user_zipcode) VALUES ($1, $2, $3) RETURNING *", [user_email, user_password, user_zipcode]);
-        return message;
+        const user = await db.one("INSERT INTO users (user_email, user_display_name, user_photoURL, user_uid) VALUES ($1, $2, $3, $4) RETURNING *", [email, displayName, photoURL, uid]);
+        return user;
     } catch(err){
         console.error(err);
     }
@@ -59,11 +63,11 @@ const createNewUser = async (item) => {
 
 //PUT "/:id"
 const updateUserById = async(id, item) => {
-    const { user_email, user_password, user_zipcode } = item;
+    const { email, displayName, photoURL, uid } = item;
     
     try {
-        const message = await db.one(`UPDATE users SET user_email=$1, user_password=$2, user_zipcode=$3 WHERE user_id = ${id} RETURNING *`,[user_email, user_password, user_zipcode]);
-        return message;
+        const user = await db.one(`UPDATE users SET user_email=$1, user_display_name=$2, user_photoURL=$3 user_uid=$4 WHERE user_id = ${id} RETURNING *`,[email, displayName, photoURL, uid]);
+        return user;
     } catch(err){
         console.error(err);
     }

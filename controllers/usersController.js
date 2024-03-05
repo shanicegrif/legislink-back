@@ -42,47 +42,23 @@ users.get("/:id", async (req, res) => {
 /**
  * TODO: need to apply bcrypt for validation
  */
-users.post("/login", async (req,res) => {
+users.post("/", async (req,res) => {
     try{
         //search the user from db.
-        const user = await searchUserByEmail(req.body.user_email);
+        const user = await searchUserByEmail(req.body.email);
         console.log(user)
 
         if(user){
-            const isMatch = await bcrypt.compare(req.body.user_password, user.user_password);
-            if(isMatch){
-                //return something
-                console.log(user)
-                res.status(200).json({ success: true, data: { payload: user } });
-            } 
-            else {
-                res.status(401).json({ error: "Invalid credentials" });
-            }
+            console.log("found one!");
+            console.log(user);
+            res.status(200).json({ success: true, data: { payload: user } });
         }
         else{
-            res.status(404).json({error: "The account does not exist"});
+            //res.status(404).json({error: "The account does not exist"});
+            createNewUser(req.body)
         }
     } catch(error){
         res.status(400).json({error: "something missing"});
-    }
-});
-
-users.post("/", async (req, res) => {
-    const { user_email, user_password, user_zipcode } = req.body;
-    const salt = await bcrypt.genSalt();
-    const hashedPW = await bcrypt.hash(user_password, salt);
-    //const hashedEmail = await bcrypt.hash(user_email, salt);
-    const item = {
-        user_email : user_email,
-        user_password : hashedPW,
-        user_zipcode : user_zipcode
-    };
-    try{
-        const user = await createNewUser(item);
-        console.log(user)
-        res.json(user);
-    } catch(error) {
-        res.status(400).json({error: "something missing in your header"});
     }
 });
 

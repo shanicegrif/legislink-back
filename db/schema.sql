@@ -11,13 +11,14 @@ CREATE DATABASE legislink_db_dev;
 /*
     TODO: use COMMENT when we have time.
         need more tables to store other data.
+    TODO: { email, displayName, photoURL, uid }
 */
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
-    user_email VARCHAR(255) UNIQUE NOT NULL,
-    user_password VARCHAR NOT NULL,
-    user_zipcode INTEGER NOT NULL,
-    manager BOOLEAN
+    user_email TEXT UNIQUE NOT NULL,
+    user_display_name TEXT,
+    user_photoURL TEXT,
+    user_uid TEXT NOT NULL
 );
 
 --not confirmed
@@ -33,3 +34,4 @@ CREATE TABLE answers (
     user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE,
     answer INTEGER NOT NULL
 );
+
