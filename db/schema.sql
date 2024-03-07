@@ -86,8 +86,8 @@ CREATE TABLE answers (
                  "votes_with_party_pct": 96.98,
                  "votes_against_party_pct": 3.02
 */
-CREATE TABLE senates {
-    id, TEXT
+CREATE TABLE senates (
+    id TEXT,
     title TEXT,
     short_title TEXT,
     api_uri TEXT,
@@ -131,7 +131,7 @@ CREATE TABLE senates {
     missed_votes_pct FLOAT,
     votes_against_party_pct FLOAT,
     votes_with_party_pct FLOAT
-};
+);
 
 /*
 {
@@ -183,7 +183,7 @@ CREATE TABLE senates {
     "votes_against_party_pct": 11.08
 }
 */
-CREATE TABLE representatives {
+CREATE TABLE representatives (
     id TEXT, 
     title TEXT, 
     short_title TEXT, 
@@ -230,4 +230,4 @@ CREATE TABLE representatives {
     missed_votes_pct FLOAT,
     votes_with_party_pct FLOAT,
     votes_against_party_pct FLOAT
-};
+);

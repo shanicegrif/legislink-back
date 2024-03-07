@@ -46,6 +46,9 @@ CREATE TABLE senates {
 };
 */
 
+const { default:axios } = require("axios");
+const db = require("../db/dbConfig.js");
+
 //GET "/"
 /**
  * getAllSenates()
@@ -72,18 +75,30 @@ const getAllSenates = async () => {
  * @param {object} item 
  * @returns 
  */
+
 const createNewSenatesByFetching = async () => {
     async function fetchForSenates(){
         return await axios.get("https://api.propublica.org/congress/v1/116/senate/members.json", {headers: {
-            "X-API-Key": `${propublicaAPIKey}`,
+            "X-API-Key": `${process.env.PROPUBLICA_API_KEY}`,
         }});
     };
+    //console.log(`${process.env.PROPUBLICA_API_KEY}`)
+    let datas = [];
 
-    let data;
-
-    fetchForSenates().then((res) => {
-        console.log(res.data.results[0].members.filter(member => member.state === "NY"));
-        data = res.data.results[0].members.filter(member => member.state === "NY");
+    fetchForSenates().then(async (res) => {
+        //console.log(res.data.results[0].members.filter(member => member.state === "NY"));
+        let newData = res.data.results[0].members.filter(member => member.state === "NY")
+        datas.push(newData);
+        for(let entry of datas){
+            console.log(entry);
+            const { id, title, short_title, api_uri, first_name, middle_name, last_name, suffix, date_of_birth, gender, party, leadership_role, twitter_account, facebook_account, youtube_account, govtrack_id, cspan_id, votesmart_id, icpsr_id, google_entity_id, fec_candidate_id,url, res_url, contact_form, in_office, cook_pvi, dw_nominate, ideal_point, seniority, next_election, total_votes, missed_votes, total_present, last_updated, ocd_id, office, phone, fax, state, senate_class, lis_id, missed_votes_pct, votes_against_party_pct, votes_with_party_pct } = entry;
+            
+            try{
+                await db.one("INSERT INTO senates (id, title, short_title, api_uri, first_name, middle_name, last_name, suffix, date_of_birth, gender, party, leadership_role, twitter_account, facebook_account, youtube_account, govtrack_id, cspan_id, votesmart_id, icpsr_id, google_entity_id, fec_candidate_id,url, res_url, contact_form, in_office, cook_pvi, dw_nominate, ideal_point, seniority, next_election, total_votes, missed_votes, total_present, last_updated, ocd_id, office, phone, fax, state, senate_class, lis_id, missed_votes_pct, votes_against_party_pct, votes_with_party_pct) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $40, $41, $42, $43)", [id, title, short_title, api_uri, first_name, middle_name, last_name, suffix, date_of_birth, gender, party, leadership_role, twitter_account, facebook_account, youtube_account, govtrack_id, cspan_id, votesmart_id, icpsr_id, google_entity_id, fec_candidate_id,url, res_url, contact_form, in_office, cook_pvi, dw_nominate, ideal_point, seniority, next_election, total_votes, missed_votes, total_present, last_updated, ocd_id, office, phone, fax, state, senate_class, lis_id, missed_votes_pct, votes_against_party_pct, votes_with_party_pct]);
+            } catch(err){
+                console.error(err);
+            };
+        }
     }).catch(function (error) {
         if (error.response) {
             // The request was made and the server responded with a status code
@@ -101,15 +116,8 @@ const createNewSenatesByFetching = async () => {
             console.log('Error', error.message);
     }});
 
-    for(let entry of data){
-        const { id, title, short_title, api_uri, first_name, middle_name, last_name, suffix, date_of_birth, gender, party, leadership_role, twitter_account, facebook_account, youtube_account, govtrack_id, cspan_id, votesmart_id, icpsr_id, google_entity_id, fec_candidate_id,url, res_url, contact_form, in_office, cook_pvi, dw_nominate, ideal_point, seniority, next_election, total_votes, missed_votes, total_present, last_updated, ocd_id, office, phone, fax, state, senate_class, lis_id, missed_votes_pct, votes_against_party_pct, votes_with_party_pct } = entry;
-        
-        try{
-            await db.one("INSERT INTO senates (id, title, short_title, api_uri, first_name, middle_name, last_name, suffix, date_of_birth, gender, party, leadership_role, twitter_account, facebook_account, youtube_account, govtrack_id, cspan_id, votesmart_id, icpsr_id, google_entity_id, fec_candidate_id,url, res_url, contact_form, in_office, cook_pvi, dw_nominate, ideal_point, seniority, next_election, total_votes, missed_votes, total_present, last_updated, ocd_id, office, phone, fax, state, senate_class, lis_id, missed_votes_pct, votes_against_party_pct, votes_with_party_pct) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $40, $41, $42, $43)", [id, title, short_title, api_uri, first_name, middle_name, last_name, suffix, date_of_birth, gender, party, leadership_role, twitter_account, facebook_account, youtube_account, govtrack_id, cspan_id, votesmart_id, icpsr_id, google_entity_id, fec_candidate_id,url, res_url, contact_form, in_office, cook_pvi, dw_nominate, ideal_point, seniority, next_election, total_votes, missed_votes, total_present, last_updated, ocd_id, office, phone, fax, state, senate_class, lis_id, missed_votes_pct, votes_against_party_pct, votes_with_party_pct]);
-        } catch(err){
-            console.error(err);
-        };
-    }
+    //console.log(datas)
+    
 }
 
 
