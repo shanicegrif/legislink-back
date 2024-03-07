@@ -87,7 +87,7 @@ CREATE TABLE answers (
                  "votes_against_party_pct": 3.02
 */
 CREATE TABLE senates (
-    id TEXT,
+    id TEXT UNIQUE NOT NULL,
     title TEXT,
     short_title TEXT,
     api_uri TEXT,
@@ -184,7 +184,7 @@ CREATE TABLE senates (
 }
 */
 CREATE TABLE representatives (
-    id TEXT, 
+    id TEXT UNIQUE NOT NULL, 
     title TEXT, 
     short_title TEXT, 
     api_uri TEXT,
