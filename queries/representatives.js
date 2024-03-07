@@ -81,7 +81,7 @@ const getAllRepresentatives = async () => {
 
 const createNewRepresentativesByFetching = async () => {
     async function fetchForRepresentatives(){
-        return await axios.get("https://api.propublica.org/congress/v1/116/house/members.json", {headers: {
+        return await axios.get("https://api.propublica.org/congress/v1/117/house/members.json", {headers: {
             "X-API-Key": `${process.env.PROPUBLICA_API_KEY}`,
         }});
     };
