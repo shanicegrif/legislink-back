@@ -3,6 +3,7 @@ const cors = require("cors");
 const app = express();
 const users = require("./controllers/usersController.js");
 const senates = require("./controllers/senatesController.js");
+const representatives = require("./controllers/representativesController.js");
 //TODO: import controllers.
 
 //middlewares 
@@ -12,6 +13,7 @@ app.use(express.json());
 //TODO: need to setup routers.
 app.use("/users", users);
 app.use("/senates", senates);
+app.use("/representatives", representatives);
 
 // root
 app.get("/", (request, response) => {
