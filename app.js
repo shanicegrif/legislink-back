@@ -6,9 +6,9 @@ const senates = require("./controllers/senatesController.js");
 const representatives = require("./controllers/representativesController.js");
 //TODO: import controllers.
 
-//middlewares 
-app.use(cors());
-app.use(express.json());
+// middlewares 
+// app.use(cors());
+// app.use(express.json());
 
 //TODO: need to setup routers.
 app.use("/users", users);
