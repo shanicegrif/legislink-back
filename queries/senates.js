@@ -68,11 +68,10 @@ const getAllSenates = async () => {
 
 //POST
 /**
- * createNewQuestions()
+ * createNewSenatesByFetching()
  * ============================
- * create a new row for the "answers"
+ * create new rows for the "senates" in NY.
  * 
- * @param {object} item 
  * @returns 
  */
 
@@ -147,57 +146,3 @@ module.exports = {
     updateSenateById,
     createNewSenatesByFetching,
 }
-
-/**
- * "INSERT INTO senates (id, title, short_title, api_uri, first_name, middle_name, last_name, suffix, date_of_birth, gender, party, leadership_role, twitter_account, facebook_account, youtube_account, govtrack_id, cspan_id, votesmart_id, icpsr_id, google_entity_id, fec_candidate_id,url, res_url, contact_form, in_office, cook_pvi, dw_nominate, ideal_point, seniority, next_election, total_votes, missed_votes, total_present, last_updated, ocd_id, office, phone, fax, state, senate_class, lis_id, missed_votes_pct, votes_against_party_pct, votes_with_party_pct) VALUES ('S000148', 'Senator, 3rd Class', 'Sen.', 'https://api.propublica.org/congress/v1/members/S000148.json', 'Charles', 'E.', 'Schumer', null, '1950-11-23', 'M', 'D', 'Senate Minority Leader', 'SenSchumer', 'senschumer', 'SenatorSchumer', '300087', '5929', '26976', '14858', '/m/01w74d', 'S8NY00082', 'https://www.schumer.senate.gov', null, 'https://www.schumer.senate.gov/contact/email-chuck', false, null, -0.359, null, '21', '2022', 717, 0, 1, '2020-12-30 19:01:18 -0500', 'ocd-division/country:us/state:ny', '322 Hart Senate Office Building', '202-224-6542', '202-228-3027', 'NY', '3', 'S270', 0, 12.27)"
- * 
- */
-
-/* 
-id: 'S000148',
-  title: 'Senator, 3rd Class',
-  short_title: 'Sen.',
-  api_uri: 'https://api.propublica.org/congress/v1/members/S000148.json',
-  first_name: 'Charles',
-  middle_name: 'E.',
-  last_name: 'Schumer',
-  suffix: null,
-  date_of_birth: '1950-11-23',
-  gender: 'M',
-  party: 'D',
-  leadership_role: 'Senate Minority Leader',
-  twitter_account: 'SenSchumer',
-  facebook_account: 'senschumer',
-  youtube_account: 'SenatorSchumer',
-  govtrack_id: '300087',
-  cspan_id: '5929',
-  votesmart_id: '26976',
-  icpsr_id: '14858',
-  crp_id: 'N00001093',
-  google_entity_id: '/m/01w74d',
-  fec_candidate_id: 'S8NY00082',
-  url: 'https://www.schumer.senate.gov',
-  rss_url: null,
-  contact_form: 'https://www.schumer.senate.gov/contact/email-chuck',
-  in_office: false,
-  cook_pvi: null,
-  dw_nominate: -0.359,
-  ideal_point: null,
-  seniority: '21',
-  next_election: '2022',
-  total_votes: 717,
-  missed_votes: 0,
-  total_present: 1,
-  last_updated: '2020-12-30 19:01:18 -0500',
-  ocd_id: 'ocd-division/country:us/state:ny',
-  office: '322 Hart Senate Office Building',
-  phone: '202-224-6542',
-  fax: '202-228-3027',
-  state: 'NY',
-  senate_class: '3',
-  state_rank: 'senior',
-  lis_id: 'S270',
-  missed_votes_pct: 0,
-  votes_with_party_pct: 87.73,
-  votes_against_party_pct: 12.27
-*/

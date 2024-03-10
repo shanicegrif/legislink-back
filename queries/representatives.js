@@ -1,62 +1,11 @@
-/*
-
-*/
-/*
-CREATE TABLE senates {
-    title TEXT,
-    short_title TEXT,
-    api_uri TEXT,
-    first_name TEXT,
-    middle_name TEXT,
-    last_name TEXT,
-    suffix TEXT,
-    date_of_birth TEXT,
-    gender TEXT,
-    party TEXT,
-    leadership_role TEXT,
-    twitter_account TEXT,
-    facebook_account TEXT,
-    youtube_account TEXT,
-    govtrack_id TEXT,
-    cspan_id TEXT,
-    votesmart_id TEXT,
-    icpsr_id TEXT,
-    google_entity_id TEXT,
-    fec_candidate_id TEXT,
-    url TEXT,
-    res_url TEXT,
-    contact_form TEXT,
-    in_office BOOLEAN,
-    cook_pvi TEXT,
-    dw_nominate FLOAT,
-    ideal_point TEXT,
-    seniority TEXT,
-    next_election TEXT,
-    total_votes INTEGER,
-    missed_votes INTEGER,
-    total_present INTEGER,
-    last_updated TEXT,
-    ocd_id TEXT,
-    office TEXT,
-    phone TEXT,
-    fax TEXT,
-    state TEXT,
-    senate_class TEXT,
-    lis_id TEXT,
-    missed_votes_pct FLOAT,
-    votes_against_party_pct FLOAT,
-    votes_with_party_pct FLOAT
-};
-*/
-
 const { default:axios } = require("axios");
 const db = require("../db/dbConfig.js");
 
 //GET "/"
 /**
- * getAllSenates()
+ * getAllRepresentatives()
  * ===========================
- * get all rows from the "senates".
+ * get all rows from the "representatives".
  * 
  * @returns {Object}
  */
@@ -71,12 +20,11 @@ const getAllRepresentatives = async () => {
 
 //POST
 /**
- * createNewQuestions()
+ * createNewResentativesByFetching()
  * ============================
- * create a new row for the "answers"
+ * create new rows for senates.
+ * it will fetch data for all NY representatives' info from the propublica.
  * 
- * @param {object} item 
- * @returns 
  */
 
 const createNewRepresentativesByFetching = async () => {
@@ -122,7 +70,15 @@ const createNewRepresentativesByFetching = async () => {
     
 }
 
-
+/**
+ * updateRepresentativeById()
+ * ========================================
+ * update single row.
+ * 
+ * @param {*} id 
+ * @param {*} item 
+ * @returns 
+ */
 const updateRepresentativeById = async(id, item) => {
     const { title, short_title, api_uri, first_name, middle_name, last_name, suffix, date_of_birth, gender, party, leadership_role, twitter_account, facebook_account, youtube_account, govtrack_id, cspan_id, votesmart_id, icpsr_id, crp_id, google_entity_id, fec_candidate_id, url, res_url, contact_form, in_office, cook_pvi, dw_nominate, ideal_point, seniority, next_election, total_votes, missed_votes, total_present, last_updated, ocd_id, office, phone, fax, state, district, at_large, geoid, missed_votes_pct, votes_with_party_pct, votes_against_party_pct } = item;
     
@@ -134,7 +90,14 @@ const updateRepresentativeById = async(id, item) => {
     }
 }
 
-//DELETE "/:id"
+/**
+ * deleteRepresentativeById()
+ * ==============================
+ * delete single row from representatives that is searched by id.
+ * 
+ * @param {*} id 
+ * @returns 
+ */
 const deleteRepresentativeById = async(id) => {
     try {
         const deletedSenate = await db.one(`DELETE FROM representatives WHERE id = ${id} RETURNING *`);
