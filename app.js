@@ -7,8 +7,8 @@ const representatives = require("./controllers/representativesController.js");
 //TODO: import controllers.
 
 // middlewares 
-// app.use(cors());
-// app.use(express.json());
+app.use(cors());
+app.use(express.json());
 
 //TODO: need to setup routers.
 app.use("/users", users);

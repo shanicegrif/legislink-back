@@ -1,6 +1,3 @@
-app.use(cors());
-app.use(express.json());
-
 
 const admin = require('firebase-admin');
 
