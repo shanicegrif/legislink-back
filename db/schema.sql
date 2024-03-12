@@ -15,13 +15,8 @@ CREATE DATABASE legislink_db_dev;
 */
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
-    user_email TEXT UNIQUE NOT NULL,
-    user_display_name TEXT,
-    user_photoURL TEXT,
     user_uid TEXT NOT NULL,
-    user_street TEXT,
-    user_city TEXT,
-    user_state VARCHAR(2)
+    user_zip TEXT
 );
 
 --not confirmed
@@ -41,6 +36,12 @@ CREATE TABLE answers (
 CREATE TABLE keywords {
     keywords_id SERIAL PRIMARY KEY,
     questionnaire_id INTEGER REFERENCES questionnaires(questionnaire_id) ON DELETE CASCADE,
+    keywords_text TEXT NOT NULL
+};
+
+CREATE TABLE user_interesting_table {
+    user_interesting_table_id SERIAL PRIMARY KEY,
+    user_uid INTEGER REFERENCES users(user_uid) ON DELETE CASCADE,
     keywords_text TEXT NOT NULL
 };
 
