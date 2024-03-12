@@ -38,6 +38,12 @@ CREATE TABLE answers (
     answer INTEGER NOT NULL
 );
 
+CREATE TABLE keywords {
+    keywords_id SERIAL PRIMARY KEY,
+    questionnaire_id INTEGER REFERENCES questionnaires(questionnaire_id) ON DELETE CASCADE,
+    keywords_text TEXT NOT NULL
+};
+
 /*
 "id": "A000360",
                  "title": "Senator, 2nd Class",
