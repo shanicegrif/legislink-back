@@ -1,5 +1,5 @@
 const express = require("express");
-const { getAllUsers, getSingleUser, searchUserByEmail, createNewUser, updateUserById, deleteUserById } = require("../queries/users");
+const { getAllUsers, searchUserByEmail, createNewUser, updateUserById, deleteUserById, getSingleUserByUID } = require("../queries/users");
 const users = express.Router();
 const bcrypt = require("bcryptjs");
 
@@ -27,7 +27,7 @@ users.get("/", async (req, res) => {
 users.get("/:id", async (req, res) => {
     const { id } = req.params;
     console.log("id is ..." + id)
-    const user = await getSingleUser(id);
+    const user = await getSingleUserByUID(id);
     console.log(user)
     if(user){
         //no query, show everything
@@ -40,7 +40,7 @@ users.get("/:id", async (req, res) => {
 });
 
 /**
- * TODO: need to apply bcrypt for validation
+ * TODO: need to change 
  */
 users.post("/", async (req,res) => {
     try{

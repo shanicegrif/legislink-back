@@ -30,9 +30,9 @@ const getAllUsers = async () => {
 }
 
 //GET "/:id"
-const getSingleUser = async (id) => {
+const getSingleUserByUID = async (id) => {
     try{
-        const user = await db.one(`SELECT * FROM users WHERE user_id = ${id}`);
+        const user = await db.one(`SELECT * FROM users WHERE user_uid = ${id}`);
         return user;
     } catch(err) {
         console.error(err);
@@ -51,10 +51,10 @@ const searchUserByEmail = async (user_email) => {
 
 //POST
 const createNewUser = async (item) => {
-    const { email, displayName, photoURL, uid } = item;
+    const { uid, user_zip } = item;
 
     try {
-        const user = await db.one("INSERT INTO users (user_email, user_display_name, user_photoURL, user_uid) VALUES ($1, $2, $3, $4) RETURNING *", [email, displayName, photoURL, uid]);
+        const user = await db.one("INSERT INTO users (user_uid, user_zip) VALUES ($1, $2) RETURNING *", [uid, user_zip]);
         return user;
     } catch(err){
         console.error(err);
@@ -63,10 +63,10 @@ const createNewUser = async (item) => {
 
 //PUT "/:id"
 const updateUserById = async(id, item) => {
-    const { email, displayName, photoURL, uid } = item;
+    const { uid, user_zip } = item;
     
     try {
-        const user = await db.one(`UPDATE users SET user_email=$1, user_display_name=$2, user_photoURL=$3 user_uid=$4 WHERE user_id = ${id} RETURNING *`,[email, displayName, photoURL, uid]);
+        const user = await db.one(`UPDATE users SET user_uid=$1, user_zip=$2 WHERE user_id = ${id} RETURNING *`,[ uid, user_zip ]);
         return user;
     } catch(err){
         console.error(err);
@@ -85,7 +85,7 @@ const deleteUserById = async(id) => {
 
 module.exports = {
     getAllUsers,
-    getSingleUser,
+    getSingleUserByUID,
     searchUserByEmail,
     createNewUser,
     updateUserById,
