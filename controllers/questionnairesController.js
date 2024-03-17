@@ -4,6 +4,7 @@ const { getAllQuestions, createNewQuestions, updateQuestionById, deleteQuestionB
 
 /** GET */
 questionnaires.get("/", async (req, res) => {
+    const { id } = req.params;
     console.log("id is ..." + id)
     const question = await getAllQuestions();
     console.log(question)

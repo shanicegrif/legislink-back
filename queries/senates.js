@@ -66,6 +66,15 @@ const getAllSenates = async () => {
     }
 };
 
+const getAllSenatesByID = async (id) => {
+    try {
+        const senates = await db.any("SELECT * FROM senates WHERE id=$1",[id]);
+        return senates;
+    } catch(err) {
+        console.error(err);
+    }
+};
+
 //POST
 /**
  * createNewSenatesByFetching()
@@ -145,4 +154,5 @@ module.exports = {
     deleteSenateById,
     updateSenateById,
     createNewSenatesByFetching,
+    getAllSenatesByID,
 }

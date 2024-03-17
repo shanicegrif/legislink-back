@@ -5,10 +5,25 @@ const {
     deleteSenateById,
     updateSenateById,
     createNewSenatesByFetching,
+    getAllSenatesByID,
 } = require('../queries/senates');
 
 senates.get("/", async (req, res) => {
     const senatesData = await getAllSenates();
+    console.log(senatesData)
+    if(senatesData){
+        //no query, show everything
+        res.status(200).json({ success: true, data: { payload: [...senatesData] } });
+    }
+    else{
+        //do something for queries
+        res.status(404).json({ success: false, data: { error: "Server Error - we didn't do it!" } });
+    }
+});
+
+senates.get("/:id", async (req, res) => {
+    const { id } = req.params;
+    const senatesData = await getAllSenatesByID(id);
     console.log(senatesData)
     if(senatesData){
         //no query, show everything

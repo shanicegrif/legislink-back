@@ -18,6 +18,15 @@ const getAllRepresentatives = async () => {
     }
 };
 
+const getAllRepresentativesByID = async (id) => {
+    try {
+        const senates = await db.any("SELECT * FROM representatives WHERE id=$1",[id]);
+        return senates;
+    } catch(err) {
+        console.error(err);
+    }
+};
+
 //POST
 /**
  * createNewResentativesByFetching()
@@ -112,4 +121,5 @@ module.exports = {
     deleteRepresentativeById,
     updateRepresentativeById,
     createNewRepresentativesByFetching,
+    getAllRepresentativesByID,
 }

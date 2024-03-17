@@ -6,9 +6,9 @@ const createNewBillsByFetching = async () => {
         return await axios.get(`https://api.congress.gov/v3/bill/${congress}?api_key=${process.env.CONGRESS_API_KEY}&limit=${limit}&format=${format}`);
     };
 
-    fetchForSenates().then(async (res) => {
+    fetchForBills().then(async (res) => {
         //console.log(res.data.results[0].members.filter(member => member.state === "NY"));
-        let newData = res.data.results[0].members.filter(member => member.state === "NY")
+        let newData = res.data;
         
         for(let entry of newData){
             //console.log(entry);

@@ -5,10 +5,25 @@ const {
     deleteRepresentativeById,
     updateRepresentativeById,
     createNewRepresentativesByFetching,
+    getAllRepresentativesByID
 } = require('../queries/representatives');
 
 representatives.get("/", async (req, res) => {
     const representativesData = await getAllRepresentatives();
+    console.log(representativesData)
+    if(representativesData){
+        //no query, show everything
+        res.status(200).json({ success: true, data: { payload: [...representativesData] } });
+    }
+    else{
+        //do something for queries
+        res.status(404).json({ success: false, data: { error: "Server Error - we didn't do it!" } });
+    }
+});
+
+representatives.get("/:id", async (req, res) => {
+    const { id } = req.params;
+    const representativesData = await getAllRepresentativesByID(id);
     console.log(representativesData)
     if(representativesData){
         //no query, show everything
