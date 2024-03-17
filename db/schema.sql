@@ -228,3 +228,316 @@ CREATE TABLE representatives (
     votes_with_party_pct FLOAT,
     votes_against_party_pct FLOAT
 );
+
+/* table for bills */
+/* adds tags */
+/*
+    "congress": 118,
+            "latestAction": {
+                "actionDate": "2024-03-15",
+                "text": "Placed on the Union Calendar, Calendar No. 352."
+            },
+            "number": "766",
+            "originChamber": "House",
+            "originChamberCode": "H",
+            "title": "Dr. Michael C. Burgess Preventive Health Savings Act",
+            "type": "HR",
+            "updateDate": "2024-03-16",
+            "updateDateIncludingText": "2024-03-16T10:38:12Z",
+            "url": "https://api.congress.gov/v3/bill/118/hr/766?format=json"
+        },
+ */
+
+ /*
+ "bill": {
+        "actions": {
+            "count": 8,
+            "url": "https://api.congress.gov/v3/bill/118/hr/766/actions?format=json"
+        },
+        //Container for Congressional Budget Office (CBO) cost estimates associated with a bill or resolution. Read about CBO on Congress.gov
+        "cboCostEstimates": [
+            {
+                "description": "As ordered reported by the House Committee on the Budget on February 6, 2024\n",
+                "pubDate": "2024-02-15T19:06:00Z",
+                "title": "H.R. 766, Dr. Michael C. Burgess Preventive Health Savings Act",
+                "url": "https://www.cbo.gov/publication/59987"
+            }
+        ],
+        "committees": {
+            "count": 1,
+            "url": "https://api.congress.gov/v3/bill/118/hr/766/committees?format=json"
+        },
+        "congress": 118,
+        "constitutionalAuthorityStatementText": "<pre>\n[Congressional Record Volume 169, Number 22 (Thursday, February 2, 2023)]\n[House]\nFrom the Congressional Record Online through the Government Publishing Office [<a href=\"https://www.gpo.gov\">www.gpo.gov</a>]\nBy Mr. BURGESS:\nH.R. 766.\nCongress has the power to enact this legislation pursuant\nto the following:\nArticle 1, Section 8\nThe single subject of this legislation is:\nRequires CBO to consider possible reductions in budget\noutlays for preventative health services outside the 10-year\nbudget window.\n[Page H681]\n</pre>",
+        "cosponsors": {
+            "count": 29,
+            "countIncludingWithdrawnCosponsors": 29,
+            "url": "https://api.congress.gov/v3/bill/118/hr/766/cosponsors?format=json"
+        },
+        "introducedDate": "2023-02-02",
+        "latestAction": {
+            "actionDate": "2024-03-15",
+            "text": "Placed on the Union Calendar, Calendar No. 352."
+        },
+        "number": "766",
+        "originChamber": "House",
+        "originChamberCode": "H",
+        "policyArea": {
+            "name": "Economics and Public Finance"
+        },
+        "relatedBills": {
+            "count": 1,
+            "url": "https://api.congress.gov/v3/bill/118/hr/766/relatedbills?format=json"
+        },
+        "sponsors": [
+            {
+                "bioguideId": "B001248",
+                "district": 26,
+                "firstName": "Michael",
+                "fullName": "Rep. Burgess, Michael C. [R-TX-26]",
+                "isByRequest": "N",
+                "lastName": "Burgess",
+                "middleName": "C.",
+                "party": "R",
+                "state": "TX",
+                "url": "https://api.congress.gov/v3/member/B001248?format=json"
+            }
+        ],
+        "subjects": {
+            "count": 8,
+            "url": "https://api.congress.gov/v3/bill/118/hr/766/subjects?format=json"
+        },
+        "summaries": {
+            "count": 1,
+            "url": "https://api.congress.gov/v3/bill/118/hr/766/summaries?format=json"
+        },
+        "textVersions": {
+            "count": 2,
+            "url": "https://api.congress.gov/v3/bill/118/hr/766/text?format=json"
+        },
+        "title": "Dr. Michael C. Burgess Preventive Health Savings Act",
+        "titles": {
+            "count": 4,
+            "url": "https://api.congress.gov/v3/bill/118/hr/766/titles?format=json"
+        },
+        "type": "HR",
+        "updateDate": "2024-03-16T23:15:24Z",
+        "updateDateIncludingText": "2024-03-16T23:15:24Z"
+    },
+    "request": {
+        "billNumber": "766",
+        "billType": "hr",
+        "congress": "118",
+        "contentType": "application/json",
+        "format": "json"
+    }
+ */
+
+ /*
+    {
+    "pagination": {
+        "count": 1
+    },
+    "request": {
+        "billNumber": "766",
+        "billType": "hr",
+        "billUrl": "https://api.congress.gov/v3/bill/118/hr/766?format=json",
+        "congress": "118",
+        "contentType": "application/json",
+        "format": "json"
+    },
+    "summaries": [
+        {
+            "actionDate": "2023-02-02",
+            "actionDesc": "Introduced in House",
+            "text": " <p><b>Preventive Health Savings Act</b></p> <p>This bill requires the Congressional Budget Office (CBO), upon receiving a request from Congress, to determine if proposed legislation would reduce spending outside of the 10-year budget window through the use of preventive health and preventive health services. </p> <p>If CBO determines that the legislation would result in substantial spending reductions from the use of preventive health and preventive health services, a description and estimate of the spending reductions must be included in CBO projections. </p>",
+            "updateDate": "2023-02-24T21:38:31Z",
+            "versionCode": "00"
+        }
+    ]
+}
+  */
+
+/*
+{
+    "pagination": {
+        "count": 2
+    },
+    "request": {
+        "billNumber": "766",
+        "billType": "hr",
+        "billUrl": "https://api.congress.gov/v3/bill/118/hr/766?format=json",
+        "congress": "118",
+        "contentType": "application/json",
+        "format": "json"
+    },
+    "textVersions": [
+        {
+            "date": "2024-03-15T04:00:00Z",
+            "formats": [
+                {
+                    "type": "Formatted Text",
+                    "url": "https://www.congress.gov/118/bills/hr766/BILLS-118hr766rh.htm"
+                },
+                {
+                    "type": "PDF",
+                    "url": "https://www.congress.gov/118/bills/hr766/BILLS-118hr766rh.pdf"
+                },
+                {
+                    "type": "Formatted XML",
+                    "url": "https://www.congress.gov/118/bills/hr766/BILLS-118hr766rh.xml"
+                }
+            ],
+            "type": "Reported in House"
+        },
+        {
+            "date": "2023-02-02T05:00:00Z",
+            "formats": [
+                {
+                    "type": "Formatted Text",
+                    "url": "https://www.congress.gov/118/bills/hr766/BILLS-118hr766ih.htm"
+                },
+                {
+                    "type": "PDF",
+                    "url": "https://www.congress.gov/118/bills/hr766/BILLS-118hr766ih.pdf"
+                },
+                {
+                    "type": "Formatted XML",
+                    "url": "https://www.congress.gov/118/bills/hr766/BILLS-118hr766ih.xml"
+                }
+            ],
+            "type": "Introduced in House"
+        }
+    ]
+}
+ */
+CREATE TABLE bills (
+    congress TEXT, --currently 118th
+    bills_id SERIAL PRIMARY KEY,
+    bills_latest_action_date TEXT, --latest update from the congress
+    cills_latest_action_description TEXT,
+    bills_number TEXT, --bills number should b unique
+    originChamber TEXT, --where is the bill come from?
+    bills_update_date TEXT, --when we update this bill in our db
+
+    bills_action_count TEXT,
+    bills_action_url TEXT,
+    bills_committees_count TEXT,
+    bills_committees_url TEXT,
+    bills_constitutionalAuthorityStatementText TEXT,
+    bills_cosponsors_count TEXT,
+    bills_cosponsors_countIncludingWithdrawnCosponsors TEXT,
+    bills_cosponsors_url TEXT,
+    
+    bills_introduced_date TEXT,
+    bills_latest_action_date TEXT,
+    bills_latest_action_text TEXT,
+
+    bills_policy_area_name TEXT,
+    
+    bills_title TEXT,
+
+);
+
+/*
+    "cboCostEstimates": [
+            {
+                "description": "As ordered reported by the House Committee on the Budget on February 6, 2024\n",
+                "pubDate": "2024-02-15T19:06:00Z",
+                "title": "H.R. 766, Dr. Michael C. Burgess Preventive Health Savings Act",
+                "url": "https://www.cbo.gov/publication/59987"
+            }
+        ],
+*/
+CREATE TABLE bill_cbo_cost_estimates (
+    bill_cbo_cost_estimates_id SERIAL PRIMARY KEY,
+    bill_number TEXT,
+    bill_cbo_cost_estimates_description TEXT,
+    bill_cbo_cost_estimates_publish_date TEXT,
+    bill_cbo_cost_estimates_title TEXT,
+    bill_cbo_cost_estimates_url TEXT
+);
+
+/* 
+"sponsors": [
+            {
+                "bioguideId": "B001248",
+                "district": 26,
+                "firstName": "Michael",
+                "fullName": "Rep. Burgess, Michael C. [R-TX-26]",
+                "isByRequest": "N",
+                "lastName": "Burgess",
+                "middleName": "C.",
+                "party": "R",
+                "state": "TX",
+                "url": "https://api.congress.gov/v3/member/B001248?format=json"
+            }
+        ],
+*/
+CREATE TABLE bill_sponsors (
+    bill_sponsors_id SERIAL PRIMARY KEY,
+    bill_number TEXT,
+    bill_bioguide_id TEXT
+);
+
+/*
+    "summaries": [
+        {
+            "actionDate": "2023-02-02",
+            "actionDesc": "Introduced in House",
+            "text": " <p><b>Preventive Health Savings Act</b></p> <p>This bill requires the Congressional Budget Office (CBO), upon receiving a request from Congress, to determine if proposed legislation would reduce spending outside of the 10-year budget window through the use of preventive health and preventive health services. </p> <p>If CBO determines that the legislation would result in substantial spending reductions from the use of preventive health and preventive health services, a description and estimate of the spending reductions must be included in CBO projections. </p>",
+            "updateDate": "2023-02-24T21:38:31Z",
+            "versionCode": "00"
+        }
+    ]
+ */
+
+CREATE TABLE bill_summaries (
+    bill_summaries_id SERIAL PRIMARY KEY,
+    bill_number TEXT,
+    bill_summaries_action_date TEXT,
+    bill_summaries_action_description TEXT,
+    bill_summaries_text TEXT,
+    bill_summaries_update_date TEXT
+);
+
+ /*
+"textVersions": [
+        {
+            "date": "2024-03-15T04:00:00Z",
+            "formats": [
+                {
+                    "type": "Formatted Text",
+                    "url": "https://www.congress.gov/118/bills/hr766/BILLS-118hr766rh.htm"
+                },
+                {
+                    "type": "PDF",
+                    "url": "https://www.congress.gov/118/bills/hr766/BILLS-118hr766rh.pdf"
+                },
+                {
+                    "type": "Formatted XML",
+                    "url": "https://www.congress.gov/118/bills/hr766/BILLS-118hr766rh.xml"
+                }
+            ],
+            "type": "Reported in House"
+        },
+        {
+            "date": "2023-02-02T05:00:00Z",
+            "formats": [
+                {
+                    "type": "Formatted Text",
+                    "url": "https://www.congress.gov/118/bills/hr766/BILLS-118hr766ih.htm"
+                },
+                {
+                    "type": "PDF",
+                    "url": "https://www.congress.gov/118/bills/hr766/BILLS-118hr766ih.pdf"
+                },
+                {
+                    "type": "Formatted XML",
+                    "url": "https://www.congress.gov/118/bills/hr766/BILLS-118hr766ih.xml"
+                }
+            ],
+            "type": "Introduced in House"
+        }
+    ]
+ */
