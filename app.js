@@ -2,8 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const users = require("./controllers/usersController.js");
-const senates = require("./controllers/senatesController.js");
-const representatives = require("./controllers/representativesController.js");
+const interestKeywords = require('./controllers/interestKeywordsController.js');
+const keywords = require('./controllers/usersInterestController.js');
 //TODO: import controllers.
 
 // middlewares 
@@ -12,8 +12,8 @@ app.use(express.json());
 
 //TODO: need to setup routers.
 app.use("/users", users);
-app.use("/senates", senates);
-app.use("/representatives", representatives);
+app.use('/interest_keywords', interestKeywords);
+app.use('/user_keywords', keywords);
 
 // root
 app.get("/", (request, response) => {
