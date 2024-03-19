@@ -45,3 +45,8 @@ CREATE TABLE users_interests (
     user_uid INTEGER REFERENCES users(user_uid) ON DELETE CASCADE,
     users_interests_keywords TEXT
 );
+
+CREATE TABLE members (
+    bioguide_id TEXT NOT NULL,
+    member_type TEXT NOT NULL
+);
