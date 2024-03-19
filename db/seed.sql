@@ -1,4 +1,4 @@
-\c legislink_db_dev;
+-- \c legislink_db_dev;
 
 --bioid
 INSERT INTO members (bioguide_id, member_type) VALUES 
