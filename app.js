@@ -4,6 +4,8 @@ const app = express();
 const users = require("./controllers/usersController.js");
 const interestKeywords = require('./controllers/interestKeywordsController.js');
 const keywords = require('./controllers/usersInterestController.js');
+const senates = require("./controllers/senateController.js");
+const representatives = require("./controllers/representativeController.js");
 //TODO: import controllers.
 
 // middlewares 
@@ -14,6 +16,8 @@ app.use(express.json());
 app.use("/users", users);
 app.use('/interest_keywords', interestKeywords);
 app.use('/user_keywords', keywords);
+app.use('/senates', senates);
+app.use('/representatives', representatives);
 
 // root
 app.get("/", (request, response) => {
