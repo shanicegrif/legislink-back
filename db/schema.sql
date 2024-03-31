@@ -11,6 +11,9 @@ CREATE DATABASE legislink_db_dev;
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
     user_uid TEXT NOT NULL,
+    user_street TEXT,
+    user_city TEXT,
+    user_state TEXT,
     user_zip TEXT
 );
 
