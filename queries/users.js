@@ -32,7 +32,7 @@ const getAllUsers = async () => {
 //GET "/:id"
 const getSingleUserByUID = async (id) => {
     try{
-        const user = await db.one(`SELECT * FROM users WHERE user_uid = ${id}`);
+        const user = await db.one(`SELECT * FROM users WHERE user_uid='${id}'`);
         return user;
     } catch(err) {
         console.error(err);
