@@ -39,22 +39,12 @@ const getSingleUserByUID = async (id) => {
     }
 }
 
-//GET "/email/:email" or something...
-const searchUserByEmail = async (user_email) => {
-    try{
-        const user = await db.one(`SELECT * FROM users WHERE user_email = '${user_email}'`);
-        return user;
-    } catch(err){
-        console.error(err);
-    }
-};
-
 //POST
 const createNewUser = async (item) => {
-    const { uid, user_street, user_city, user_state, user_zip } = item;
+    const { uid, street, city, state, zip } = item;
 
     try {
-        const user = await db.one("INSERT INTO users (user_uid, user_street, user_city, user_state, user_zip) VALUES ($1, $2, $3, $4, $5) RETURNING *", [uid, user_street, user_city, user_state, user_zip]);
+        const user = await db.one("INSERT INTO users (user_uid, user_street, user_city, user_state, user_zip) VALUES ($1, $2, $3, $4, $5) RETURNING *", [uid, street, city, state, zip]);
         return user;
     } catch(err){
         console.error(err);
@@ -63,10 +53,11 @@ const createNewUser = async (item) => {
 
 //PUT "/:id"
 const updateUserById = async(id, item) => {
-    const { uid, user_street, user_city, user_state, user_zip } = item;
+    const { street, city, state, zip } = item;
+    console.log(item)
     
     try {
-        const user = await db.one(`UPDATE users SET user_uid=$1, user_street=$2, user_city=$3, user_state=$4, user_zip=$5 WHERE user_id = ${id} RETURNING *`,[ uid, user_street, user_city, user_state, user_zip ]);
+        const user = await db.one(`UPDATE users SET user_street=$1, user_city=$2, user_state=$3, user_zip=$4 WHERE user_uid='${id}' RETURNING *`,[ street, city, state, zip ]);
         return user;
     } catch(err){
         console.error(err);
@@ -76,7 +67,7 @@ const updateUserById = async(id, item) => {
 //DELETE "/:id"
 const deleteUserById = async(id) => {
     try {
-        const user = await db.one(`DELETE FROM users WHERE user_id = ${id} RETURNING *`);
+        const user = await db.one(`DELETE FROM users WHERE user_uid='${id}' RETURNING *`);
         return user;
     } catch(err){
         console.error(err);
@@ -86,7 +77,6 @@ const deleteUserById = async(id) => {
 module.exports = {
     getAllUsers,
     getSingleUserByUID,
-    searchUserByEmail,
     createNewUser,
     updateUserById,
     deleteUserById,
