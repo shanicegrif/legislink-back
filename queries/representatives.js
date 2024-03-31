@@ -18,6 +18,24 @@ const getAllRepresentatives = async () => {
     }
 };
 
+const getSingleRepresentativeByOcdID = async (ocd_id) => {
+    try {
+        const senates = await db.any("SELECT * FROM representatives WHERE ocd_id=$1",[ocd_id]);
+        return senates;
+    } catch(err) {
+        console.error(err);
+    }
+};
+
+const getSingleRepresentativeByBioguidId = async (id) => {
+    try {
+        const senates = await db.any("SELECT * FROM representatives WHERE id=$1",[bioguideID]);
+        return senates;
+    } catch(err) {
+        console.error(err);
+    }
+};
+
 //POST
 /**
  * createNewResentativesByFetching()
@@ -112,4 +130,6 @@ module.exports = {
     deleteRepresentativeById,
     updateRepresentativeById,
     createNewRepresentativesByFetching,
+    getSingleRepresentativeByOcdID,
+    getSingleRepresentativeByBioguidId,
 }

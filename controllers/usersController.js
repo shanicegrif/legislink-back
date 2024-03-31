@@ -1,5 +1,5 @@
 const express = require("express");
-const { getAllUsers, searchUserByEmail, createNewUser, updateUserById, deleteUserById, getSingleUserByUID } = require("../queries/users");
+const { getAllUsers, createNewUser, updateUserById, deleteUserById, getSingleUserByUID } = require("../queries/users");
 const users = express.Router();
 const bcrypt = require("bcryptjs");
 
@@ -44,19 +44,7 @@ users.get("/:id", async (req, res) => {
  */
 users.post("/", async (req,res) => {
     try{
-        //search the user from db.
-        const user = await searchUserByEmail(req.body.email);
-        console.log(user)
-
-        if(user){
-            console.log("found one!");
-            console.log(user);
-            res.status(200).json({ success: true, data: { payload: user } });
-        }
-        else{
-            //res.status(404).json({error: "The account does not exist"});
-            createNewUser(req.body)
-        }
+        createNewUser(req.body)
     } catch(error){
         res.status(400).json({error: "something missing"});
     }

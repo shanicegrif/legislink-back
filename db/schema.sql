@@ -9,8 +9,10 @@ CREATE DATABASE legislink_db_dev;
 */
 
 CREATE TABLE users (
-    user_id SERIAL PRIMARY KEY,
-    user_uid TEXT NOT NULL,
+    user_uid TEXT UNIQUE NOT NULL,
+    user_street TEXT,
+    user_city TEXT,
+    user_state TEXT,
     user_zip TEXT
 );
 
@@ -24,14 +26,14 @@ CREATE TABLE questionnaires (
 CREATE TABLE answers (
     answer_id SERIAL PRIMARY KEY,
     questionnaire_id INTEGER REFERENCES questionnaires(questionnaire_id) ON DELETE CASCADE,
-    user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE,
+    user_uid TEXT REFERENCES users(user_uid) ON DELETE CASCADE,
     answer INTEGER NOT NULL
 );
 
 --save a user's interest
 CREATE TABLE keywords (
     keywords_id SERIAL PRIMARY KEY,
-    user_uid INTEGER REFERENCES users(user_uid) ON DELETE CASCADE,
+    user_uid TEXT REFERENCES users(user_uid) ON DELETE CASCADE,
     keywords_text TEXT NOT NULL
 );
 
@@ -42,7 +44,7 @@ CREATE TABLE interest_keywords (
 
 CREATE TABLE users_interests (
     users_interests_id SERIAL PRIMARY KEY,
-    user_uid INTEGER REFERENCES users(user_uid) ON DELETE CASCADE,
+    user_uid TEXT REFERENCES users(user_uid) ON DELETE CASCADE,
     users_interests_keywords TEXT
 );
 
