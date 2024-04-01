@@ -1,7 +1,6 @@
 const express = require("express");
 const { getAllUsers, createNewUser, updateUserById, deleteUserById, getSingleUserByUID } = require("../queries/users");
 const users = express.Router();
-const bcrypt = require("bcryptjs");
 
 /**
  * TODO: 

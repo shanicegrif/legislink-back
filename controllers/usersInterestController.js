@@ -1,13 +1,14 @@
 const express = require("express");
 const keywords = express.Router();
 const {
-    getAllInterests,
+    //getAllInterests,
     deleteInterestsById,
     updateInterestsById,
     createNewInterests,
     getAllInterestsBySingleUserID,
 } = require('../queries/userInterests');
 
+/*
 keywords.get("/", async (req, res) => {
     const question = await getAllInterests();
     if(question){
@@ -18,7 +19,7 @@ keywords.get("/", async (req, res) => {
         //do something for queries
         res.status(404).json({ success: false, data: { error: "Server Error - we didn't do it!" } });
     }
-});
+});*/
 
 keywords.get("/:id", async (req, res) => {
     const { id } = req.params;
@@ -34,9 +35,13 @@ keywords.get("/:id", async (req, res) => {
     }
 });
 
-keywords.post("/", async (req, res) => {
+keywords.post("/:id", async (req, res) => {
+    const { id } = req.params;
+    console.log("id is")
+    console.log(id);
+    console.log(req.body)
     try{
-        const question = await createNewInterests(req.body);
+        const question = await createNewInterests(id, req.body);
         console.log(question)
         res.json(question);
     } catch(error) {
@@ -59,9 +64,9 @@ keywords.put("/:id", async (req, res) => {
 
 
 /** delete */
-keywords.delete("/:id", async (req, res) => {
-    const { id } = req.params;
-    const user = await deleteInterestsById(id);
+keywords.delete("/:id/:word", async (req, res) => {
+    const { id, word } = req.params;
+    const user = await deleteInterestsById(id, word);
     if(user){
         res.status(200).json(user);
     }
