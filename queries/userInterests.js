@@ -1,4 +1,5 @@
 const db = require("../db/dbConfig.js");
+const pgp = require("pg-promise")();
 
 /**********************************************************
  * 
@@ -44,7 +45,7 @@ const getAllInterests = async () => {
  */
 const getAllInterestsBySingleUserID = async (id) => {
     try{
-        const answers = await db.any(`SELECT * FROM users_interests WHERE user_uid = ${id}`);
+        const answers = await db.any(`SELECT * FROM users_interests WHERE user_uid='${id}'`);
         return answers;
     } catch(err) {
         console.error(err);
@@ -60,12 +61,12 @@ const getAllInterestsBySingleUserID = async (id) => {
  * @param {object} item 
  * @returns 
  */
-const createNewInterests = async (item) => {
-    const { uid, users_interests_keywords } = item;
-
-    try {
-        const newAnswer = await db.one("INSERT INTO users_interests (user_uid, users_interests_keywords) VALUES ($1, $2) RETURNING *", [ uid, users_interests_keywords ]);
-        return newAnswer;
+const createNewInterests = async (id, items) => {
+    console.log(items);
+    try{
+        const insertion = await db.any(`INSERT INTO users_interests (user_uid, users_interests_keywords) VALUES ($1, $2) RETURNING *`, [id, items.newInterest]);
+        console.log(insertion)
+        return insertion;
     } catch(err){
         console.error(err);
     }
@@ -77,7 +78,7 @@ const updateInterestsById = async(id, item) => {
     const { users_interests_keywords } = item
 
     try {
-        const updatedAnswer = await db.one(`UPDATE users_interests SET users_interests_keywords=$1 WHERE uid = ${id} RETURNING *`,[users_interests_keywords]);
+        const updatedAnswer = await db.one(`UPDATE users_interests SET users_interests_keywords=$1 WHERE uid='${id}' RETURNING *`,[users_interests_keywords]);
         return updatedAnswer;
     } catch(err){
         console.error(err);
@@ -85,9 +86,9 @@ const updateInterestsById = async(id, item) => {
 }
 
 //DELETE "/:id"
-const deleteInterestsById = async(id) => {
+const deleteInterestsById = async(id, word) => {
     try {
-        const deletedAnswer = await db.one(`DELETE FROM users_interests WHERE uid = ${id} RETURNING *`);
+        const deletedAnswer = await db.any(`DELETE FROM users_interests WHERE (user_uid='${id}' AND users_interests_keywords='${word}') RETURNING *`);
         return deletedAnswer;
     } catch(err){
         console.error(err);

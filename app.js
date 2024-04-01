@@ -15,7 +15,7 @@ app.use(express.json());
 //TODO: need to setup routers.
 app.use("/users", users);
 app.use('/interest_keywords', interestKeywords);
-app.use('/user_keywords', keywords);
+app.use('/users_interests', keywords);
 app.use('/senates', senates);
 app.use('/representatives', representatives);
 
