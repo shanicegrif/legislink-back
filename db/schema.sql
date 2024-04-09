@@ -37,6 +37,13 @@ CREATE TABLE keywords (
     keywords_text TEXT NOT NULL
 );
 
+--save a user's preferrence on the dashboard
+CREATE TABLE preferrences (
+    user_uid TEXT REFERENCES users(user_uid) ON DELETE CASCADE,
+    preferrence_my_district BOOLEAN DEFAULT TRUE,
+    preferrence_statement BOOLEAN DEFAULT TRUE
+);
+
 CREATE TABLE interest_keywords (
     keywords_id SERIAL PRIMARY KEY,
     keywords_text TEXT NOT NULL
@@ -46,6 +53,12 @@ CREATE TABLE users_interests (
     users_interests_id SERIAL PRIMARY KEY,
     user_uid TEXT REFERENCES users(user_uid) ON DELETE CASCADE,
     users_interests_keywords TEXT
+);
+
+CREATE TABLE bill_summaries (
+    bill_id TEXT NOT NULL,
+    bill_summary TEXT,
+    bill_summary_tags TEXT
 );
 
 CREATE TABLE senates (
