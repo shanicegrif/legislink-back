@@ -1,6 +1,6 @@
 const express = require("express");
-const { getAllPreferrencesBySingleUserID, createNewPreferrence, updatePreferrenceById } = require("../queries/preferrences");
-const preferrences = express.Router();
+const { getAllpreferencesBySingleUserID, createNewpreference, updatepreferenceById } = require("../queries/preferences.js");
+const preferences = express.Router();
 
 /*
 keywords.get("/", async (req, res) => {
@@ -15,10 +15,10 @@ keywords.get("/", async (req, res) => {
     }
 });*/
 
-preferrences.get("/:id", async (req, res) => {
+preferences.get("/:id", async (req, res) => {
     const { id } = req.params;
 
-    const question = await getAllPreferrencesBySingleUserID(id);
+    const question = await getAllpreferencesBySingleUserID(id);
     if(question){
         //no query, show everything
         res.status(200).json({ success: true, data: { payload: [...question] } });
@@ -29,13 +29,13 @@ preferrences.get("/:id", async (req, res) => {
     }
 });
 
-preferrences.post("/:id", async (req, res) => {
+preferences.post("/:id", async (req, res) => {
     const { id } = req.params;
     console.log("id is")
     console.log(id);
     console.log(req.body)
     try{
-        const question = await createNewPreferrence(id, req.body);
+        const question = await createNewpreference(id, req.body);
         console.log(question)
         res.json(question);
     } catch(error) {
@@ -43,11 +43,11 @@ preferrences.post("/:id", async (req, res) => {
     }
 });
 
-preferrences.put("/:id", async (req, res) => {
+preferences.put("/:id", async (req, res) => {
     const { id } = req.params;
     console.log(req.body);
     try{
-        const user = await updatePreferrenceById(id, req.body);
+        const user = await updatepreferenceById(id, req.body);
         console.log("hello")
         console.log(user)
         res.status(200).json({success: true, data: { payload: user } })
@@ -58,7 +58,7 @@ preferrences.put("/:id", async (req, res) => {
 
 
 /** delete 
-preferrences.delete("/:id/:word", async (req, res) => {
+preferences.delete("/:id/:word", async (req, res) => {
     const { id, word } = req.params;
     const user = await deleteInterestsById(id, word);
     if(user){
@@ -71,8 +71,8 @@ preferrences.delete("/:id/:word", async (req, res) => {
 */
 
 /** page 404 */
-preferrences.get("*", (req, res) => {
+preferences.get("*", (req, res) => {
     res.status(404).send("with incorrect id - sets status to 404 and returns error key");
 });
 
-module.exports = preferrences;
+module.exports = preferences;
