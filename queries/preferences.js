@@ -25,9 +25,9 @@ CREATE TABLE users_interests (
  * 
  * @returns {Object}
  */
-const getAllPreferrences = async () => {
+const getAllPreferences = async () => {
     try {
-        const answers = await db.any("SELECT * FROM preferrences");
+        const answers = await db.any("SELECT * FROM preferences");
         return answers;
     } catch(err) {
         console.error(err);
@@ -43,9 +43,9 @@ const getAllPreferrences = async () => {
  * @param {string} id - user_id
  * @returns {object}
  */
-const getAllPreferrencesBySingleUserID = async (id) => {
+const getAllPreferencesBySingleUserID = async (id) => {
     try{
-        const answers = await db.any(`SELECT * FROM preferrences WHERE user_uid='${id}'`);
+        const answers = await db.any(`SELECT * FROM preferences WHERE user_uid='${id}'`);
         return answers;
     } catch(err) {
         console.error(err);
@@ -57,15 +57,15 @@ const getAllPreferrencesBySingleUserID = async (id) => {
  * createNewAnswer()
  * ============================
  * create a new row for the "answers"
- * preferrence_my_district BOOLEAN DEFAULT TRUE,
-    preferrence_statement BOOLEAN DEFAULT TRUE
+ * preference_my_district BOOLEAN DEFAULT TRUE,
+    preference_statement BOOLEAN DEFAULT TRUE
  * @param {object} item 
  * @returns 
  */
-const createNewPreferrence = async (id, items) => {
+const createNewPreference = async (id, items) => {
     console.log(items);
     try{
-        const insertion = await db.any(`INSERT INTO preferrences (user_uid, preferrence_my_district, preferrence_statement) VALUES ($1, $2, $3) RETURNING *`, [id, items.myDistrict, items.statement]);
+        const insertion = await db.any(`INSERT INTO preferences (user_uid, preference_my_district, preference_statement) VALUES ($1, $2, $3) RETURNING *`, [id, items.myDistrict, items.statement]);
         console.log(insertion)
         return insertion;
     } catch(err){
@@ -75,9 +75,9 @@ const createNewPreferrence = async (id, items) => {
 
 //PUT "/:id"
 
-const updatePreferrenceById = async(id, items) => {
+const updatePreferenceById = async(id, items) => {
     try {
-        const updatedAnswer = await db.one(`UPDATE preferrences SET (preferrence_my_district=$1 preferrence_statement=$2) WHERE uid='${id}' RETURNING *`,[items.myDistrict, items.statement]);
+        const updatedAnswer = await db.one(`UPDATE preferences SET (preference_my_district=$1 preference_statement=$2) WHERE uid='${id}' RETURNING *`,[items.myDistrict, items.statement]);
         return updatedAnswer;
     } catch(err){
         console.error(err);
@@ -97,8 +97,8 @@ const deleteInterestsById = async(id, word) => {
 */
 
 module.exports = {
-    getAllPreferrences,
-    getAllPreferrencesBySingleUserID,
-    createNewPreferrence,
-    updatePreferrenceById,
+    getAllPreferences,
+    getAllPreferencesBySingleUserID,
+    createNewPreference,
+    updatePreferenceById,
 }

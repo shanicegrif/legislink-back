@@ -1,5 +1,5 @@
 const express = require("express");
-const { getAllpreferencesBySingleUserID, createNewpreference, updatepreferenceById } = require("../queries/preferences.js");
+const { getAllPreferencesBySingleUserID, createNewPreference, updatePreferenceById } = require("../queries/preferences.js");
 const preferences = express.Router();
 
 /*
@@ -18,7 +18,7 @@ keywords.get("/", async (req, res) => {
 preferences.get("/:id", async (req, res) => {
     const { id } = req.params;
 
-    const question = await getAllpreferencesBySingleUserID(id);
+    const question = await getAllPreferencesBySingleUserID(id);
     if(question){
         //no query, show everything
         res.status(200).json({ success: true, data: { payload: [...question] } });
@@ -35,7 +35,7 @@ preferences.post("/:id", async (req, res) => {
     console.log(id);
     console.log(req.body)
     try{
-        const question = await createNewpreference(id, req.body);
+        const question = await createNewPreference(id, req.body);
         console.log(question)
         res.json(question);
     } catch(error) {
@@ -47,7 +47,7 @@ preferences.put("/:id", async (req, res) => {
     const { id } = req.params;
     console.log(req.body);
     try{
-        const user = await updatepreferenceById(id, req.body);
+        const user = await updatePreferenceById(id, req.body);
         console.log("hello")
         console.log(user)
         res.status(200).json({success: true, data: { payload: user } })
