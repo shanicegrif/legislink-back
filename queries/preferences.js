@@ -65,7 +65,7 @@ const getAllPreferencesBySingleUserID = async (id) => {
 const createNewPreference = async (id, items) => {
     console.log(items);
     try{
-        const insertion = await db.any(`INSERT INTO preferences (user_uid, preference_my_district, preference_statement) VALUES ($1, $2, $3) RETURNING *`, [id, items.myDistrict, items.statement]);
+        const insertion = await db.any(`INSERT INTO preferences (user_uid, preference_my_district, preference_statement, preference_today_vote) VALUES ($1, $2, $3, $4) RETURNING *`, [id, items.myDistrict, items.statement, items.todayVote]);
         console.log(insertion)
         return insertion;
     } catch(err){
@@ -77,7 +77,7 @@ const createNewPreference = async (id, items) => {
 
 const updatePreferenceById = async(id, items) => {
     try {
-        const updatedAnswer = await db.one(`UPDATE preferences SET (preference_my_district=$1 preference_statement=$2) WHERE uid='${id}' RETURNING *`,[items.myDistrict, items.statement]);
+        const updatedAnswer = await db.one(`UPDATE preferences SET (preference_my_district=$1 preference_statement=$2 preference_today_vote=$3) WHERE uid='${id}' RETURNING *`,[items.myDistrict, items.statement, items.todayVote]);
         return updatedAnswer;
     } catch(err){
         console.error(err);

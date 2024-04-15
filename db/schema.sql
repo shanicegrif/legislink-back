@@ -37,11 +37,12 @@ CREATE TABLE keywords (
     keywords_text TEXT NOT NULL
 );
 
---save a user's preferrence on the dashboard
-CREATE TABLE preferrences (
+--save a user's preference on the dashboard
+CREATE TABLE preferences (
     user_uid TEXT REFERENCES users(user_uid) ON DELETE CASCADE,
-    preferrence_my_district BOOLEAN DEFAULT TRUE,
-    preferrence_statement BOOLEAN DEFAULT TRUE
+    preference_my_district BOOLEAN DEFAULT TRUE,
+    preference_statement BOOLEAN DEFAULT TRUE,
+    preference_today_vote BOOLEAN DEFAULT TRUE
 );
 
 CREATE TABLE interest_keywords (
