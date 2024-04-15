@@ -7,6 +7,7 @@ const keywords = require('./controllers/usersInterestController.js');
 const senates = require("./controllers/senateController.js");
 const representatives = require("./controllers/representativeController.js");
 const preferences = require("./controllers/preferencesController.js");
+const email = require("./controllers/emailController.js");
 //TODO: import controllers.
 
 // middlewares 
@@ -20,6 +21,7 @@ app.use('/users_interests', keywords);
 app.use('/senates', senates);
 app.use('/representatives', representatives);
 app.use('/preferences', preferences);
+app.use('/email', email);
 
 // root
 app.get("/", (request, response) => {
