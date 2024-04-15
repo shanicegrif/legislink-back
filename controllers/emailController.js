@@ -4,7 +4,7 @@ const email = express.Router();
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-email.get('/', async (req, res) => {
+email.post('/', async (req, res) => {
     try {
         const data = await resend.emails.send({
           from: `${req.body.displayName} <${req.body.email}>`,
