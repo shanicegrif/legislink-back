@@ -1,4 +1,4 @@
-const Resend = require('resend');
+const {Resend} = require('resend');
 const express = require("express");
 const email = express.Router();
 
@@ -12,7 +12,7 @@ email.post('/', async (req, res) => {
           subject: `${req.body.subject}`,
           html: req.body.htmlContent,
         });
-    
+        console.log(data);
         res.status(200).json(data);
     } catch(error) {
         res.status(400).json(error);
