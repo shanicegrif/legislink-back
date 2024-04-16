@@ -5,10 +5,11 @@ const email = express.Router();
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 email.post('/', async (req, res) => {
+    //change to: to your own resend api email
     try {
         const data = await resend.emails.send({
-          from: `${req.body.displayName} <${req.body.email}>`,
-          to: ["shanicegriffin@pursuit.org"],
+          from: 'Acme <onboarding@resend.dev>',
+          to: ["sungyi@pursuit.org"],
           subject: `${req.body.subject}`,
           html: req.body.htmlContent,
         });
