@@ -9,7 +9,7 @@ email.post('/', async (req, res) => {
     try {
         const data = await resend.emails.send({
           from: 'Acme <onboarding@resend.dev>',
-          to: ["sungyi@pursuit.org"],
+          to: ["shanicegriffin@pursuit.org"],
           subject: `${req.body.subject}`,
           html: req.body.htmlContent,
         });
